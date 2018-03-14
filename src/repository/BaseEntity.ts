@@ -51,6 +51,13 @@ export class BaseEntity {
         return (this.constructor as any).getRepository().remove(this);
     }
 
+    /**
+     * Reloads current entity from the database.
+     */
+    reload(): Promise<this> {
+        return (this.constructor as any).getRepository().reload(this);
+    }
+
     // -------------------------------------------------------------------------
     // Public Static Methods
     // -------------------------------------------------------------------------
@@ -341,5 +348,4 @@ export class BaseEntity {
     static clear<T extends BaseEntity>(this: ObjectType<T>, ): Promise<void> {
         return (this as any).getRepository().clear();
     }
-
 }

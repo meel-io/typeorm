@@ -346,4 +346,10 @@ export class Repository<Entity extends ObjectLiteral> {
         return this.manager.clear(this.metadata.target);
     }
 
+    /**
+     * Reloads given entity
+     */
+    async reload(entity: Entity): Promise<Entity> {
+        return this.manager.reload(this.metadata.target, entity);
+    }
 }

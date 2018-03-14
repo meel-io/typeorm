@@ -859,6 +859,12 @@ export class EntityManager {
         return this.queryRunner.release();
     }
 
+    async reload<Entity>(entity: any): Promise<Entity>;
+
+    async reload<Entity>(target: Function|string, entity: any): Promise<Entity>;
+
+    async reload<Entity>(targetOrEntity: any|Function|string, maybeEntity?: any): Promise<Entity> {}
+
     // -------------------------------------------------------------------------
     // Protected Methods
     // -------------------------------------------------------------------------
