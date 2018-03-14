@@ -348,4 +348,11 @@ export class BaseEntity {
     static clear<T extends BaseEntity>(this: ObjectType<T>, ): Promise<void> {
         return (this as any).getRepository().clear();
     }
+
+    /**
+     * Reloads given entity
+     */
+    static reload<T extends BaseEntity>(entity: BaseEntity):  Promise<T>  {
+        return this.getRepository().reload(entity);
+    }
 }
