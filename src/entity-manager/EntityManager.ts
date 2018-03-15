@@ -863,7 +863,11 @@ export class EntityManager {
 
     async reload<Entity>(target: Function|string, entity: any): Promise<Entity>;
 
-    async reload<Entity>(targetOrEntity: any|Function|string, maybeEntity?: any): Promise<Entity> {}
+    async reload<Entity>(targetOrEntity: any|Function|string, maybeEntity?: any): Promise<Entity> {
+        const entity: Entity = maybeEntity ? maybeEntity as Entity : targetOrEntity as Entity;
+        const reloadedEntity = await this.findOneById(Entity, entity.id);
+        return this.merge(reloadedEntity, entity);
+    }
 
     // -------------------------------------------------------------------------
     // Protected Methods
